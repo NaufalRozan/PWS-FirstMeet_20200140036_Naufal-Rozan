@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import pws1.pws1.exceptions.IllegalOrphanException;
 import pws1.pws1.exceptions.NonexistentEntityException;
 import pws1.pws1.exceptions.PreexistingEntityException;
@@ -26,11 +27,16 @@ public class MatakuliahJpaController implements Serializable {
     public MatakuliahJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("pws1_pws1_jar_0.0.1-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
+    public MatakuliahJpaController() {
+    }
+    
+    
 
     public void create(Matakuliah matakuliah) throws IllegalOrphanException, PreexistingEntityException, Exception {
         List<String> illegalOrphanMessages = null;
